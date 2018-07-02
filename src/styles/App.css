@@ -1,0 +1,12 @@
+.container {
+  margin: 0 auto;
+  height: 100%;
+}
+
+html, body
+{
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden; 
+}
+

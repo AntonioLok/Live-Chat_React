@@ -1,0 +1,18 @@
+.signUp-container {
+  width: 1200px;
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 160px;
+}
+
+.btn {
+  height: 35px;
+  width: 120px;
+}
+
+.alert {
+  color: red;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
