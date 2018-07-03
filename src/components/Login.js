@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Redirect } from 'react-router-dom';
-import io from "socket.io-client";
 
 import './../styles/Login.css';
 
@@ -22,7 +21,7 @@ class Login extends Component {
   }
 
   async logIn(userUsername, userPassword) {
-    await fetch('http://localhost:8000/api/log-in', {
+    await fetch('api/log-in', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -65,15 +64,15 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    if (this.state.username == "") {
+    if (this.state.username === "") {
       this.setState({errorUsername : "Username field cannot be empty"});
     }  
 
-    if (this.state.password == "") {
+    if (this.state.password === "") {
       this.setState({errorPassword : "Password field cannot be empty"});
     } 
 
-    if (this.state.username != "" && this.state.password != "") {
+    if (this.state.username !== "" && this.state.password !== "") {
       this.logIn(this.state.username, this.state.password);
     }
 

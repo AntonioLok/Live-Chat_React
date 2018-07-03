@@ -18,18 +18,19 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// Allow cors
 app.use(function(req, res, next) {
        res.header("Access-Control-Allow-Origin", "*");
        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
        res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
           next();
-    });
+});
 
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-//app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 // API location
 app.use('/api', api);
@@ -41,19 +42,21 @@ app.get('*', (req, res) => {
 });
 
 //Set Port
-const port = process.env.PORT || '8000';
+const port = process.env.PORT || '3000';
 app.set('port', port);
 const server = http.createServer(app);
 
-var usersOn = [];
 // This creates our socket using the instance of the server
 const io = socketIO(server)
 
+var usersOn = [];
+var messagesSoFar = [];
+
 io.on('connection', socket => {
 
-  socket.on('update-users-server', (usersList) => {
+  socket.on('update-users-server', (usersList, messagesList) => {
     usersOn = usersList;
-	//console.log(usersList);
+	  messagesSoFar = messagesList;
   });
 
   var currentUser;
@@ -62,17 +65,17 @@ io.on('connection', socket => {
     if (usersOn.indexOf(username) != -1) return;
   	currentUser = username;
     usersOn.push(username);
-    //console.log(username);
     socket.broadcast.emit('update-users-client', {users: usersOn});
   });
   
+  socket.on('add-message', (message) => {
+    messagesSoFar.push(message);
+    io.emit('update-messages', {messages : messagesSoFar});
+  });
+  
   socket.on('disconnect', () => {
-    //index = usersOn.indexOf(currentUser);
-    //usersOnn = usersOn.splice(index, 1)
     usersOn = usersOn.filter((element) =>{ return element !== currentUser});
-    //console.log(usersOn);
     socket.broadcast.emit('update-users-client', {users : usersOn});
-    console.log('user disconnected');
   });
 }); 
 

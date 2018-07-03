@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Redirect } from 'react-router-dom';
 import './../styles/Signup.css';
 
@@ -17,7 +16,7 @@ class SignUp extends Component {
   }
 
   async signUp(userUsername, userPassword) {
-    await fetch('http://localhost:8000/api/sign-up', {
+    await fetch('api/sign-up', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -53,15 +52,15 @@ class SignUp extends Component {
   }
 
   handleSubmit(event) {
-    if (this.state.username == "") {
+    if (this.state.username === "") {
       this.setState({errorUsername : "Username field cannot be empty"});
     }  
 
-    if (this.state.password != this.state.repassword) {
+    if (this.state.password !== this.state.repassword) {
       this.setState({errorPassword: "Password does not match"});
     } 
 
-    if (this.state.username != "" && this.state.password == this.state.repassword) {
+    if (this.state.username !== "" && this.state.password === this.state.repassword) {
       this.setState({
         errorUsername : null,
         errorPassword: null

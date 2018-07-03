@@ -2,6 +2,23 @@
   display: flex;
 }
 
+.userTitle {
+  color: red;
+  font-size: 30px;
+  border-bottom: solid 1px;
+  margin-bottom: 10px;
+}
+
+.user {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.msg {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
 .left-component {
   position: absolute;
   left: 0;

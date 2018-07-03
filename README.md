@@ -1,5 +1,14 @@
 # Live Chat Project
-This project is still incomplete. 
+This project allows users to talk in a chat room. Once a user has successfully logged in, the user will be
+added to the chat room.
+
+This project was created using NodeJS, MongoDB, Express and ReactJS.
+
+To start the project run `node server`
+
+# About me
+This project was created by Antonio Lok for learning purposes only.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
