@@ -4,6 +4,8 @@ added to the chat room.
 
 This project was created using NodeJS, MongoDB, Express, ReactJS and Socket io (https://socket.io/)
 
+![alt text](https://github.com/AntonioLok/Live-Chat_React/blob/master/images/chat.png)
+
 To start the project run `node server`
 
 # About me
