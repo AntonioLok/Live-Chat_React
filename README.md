@@ -2,7 +2,7 @@
 This project allows users to talk in a chat room. Once a user has successfully logged in, the user will be
 added to the chat room.
 
-This project was created using NodeJS, MongoDB, Express and ReactJS.
+This project was created using NodeJS, MongoDB, Express, ReactJS and Socket io (https://socket.io/)
 
 To start the project run `node server`
 
